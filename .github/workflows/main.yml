@@ -3,12 +3,12 @@ on:
   pull_request:
     types: [labeled]
 jobs:
- build:
-   name: notificar
-   runs-on: ubuntu-latest   
-   steps:
-      - name: Dump GitHub context
-        if: {{ github.events.label.name == 'notify' }}
+  build:
+    if: github.events.label.name == 'notify'
+    name: notificar
+    runs-on: ubuntu-latest   
+    steps:
+      - name: notify     
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
