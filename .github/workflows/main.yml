@@ -4,11 +4,11 @@ on:
     types: [labeled]
 jobs:
   build:
-    if: github.events.label.name == 'notify'
+    if: github.event.label.name == 'notify'
     name: notificar
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
     steps:
-      - name: notify     
+      - name: notify
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
