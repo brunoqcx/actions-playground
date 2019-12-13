@@ -8,7 +8,9 @@ jobs:
     name: notificar
     runs-on: ubuntu-latest
     steps:
-      - name: notify
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/action-notify
+        name: notify
         env:
           MY_NAME: mayke
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
