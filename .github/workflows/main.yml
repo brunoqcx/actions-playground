@@ -1,0 +1,16 @@
+name: notifier
+on:
+  pull_request:
+    types: [labeled]
+jobs:
+  build:
+    if: github.event.label.name == 'notify'
+    name: notificar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./actions/action-notify
+        name: notify
+        env:
+          MY_NAME: mayke
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
